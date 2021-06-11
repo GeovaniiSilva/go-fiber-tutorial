@@ -17,7 +17,7 @@ type User struct {
 
 	FirstName string `json:"firstname"`
 	LastName  string `json:"lastname"`
-	Email     string `json:"email"`
+	Email     string `json:"email" gorm:"unique"`
 }
 
 var host = viperenv.ViperEnvVariable("host")
@@ -73,8 +73,10 @@ func SaveUser(c *fiber.Ctx) error {
 		return c.Status(500).SendString(err.Error())
 	}
 
-	DB.Create(&user)
-	fmt.Println(user)
+	if err := DB.Create(&user); err != nil {
+		return c.Status(500).SendString("User already exists")
+	}
+
 	return c.JSON(&user)
 
 }
