@@ -2,7 +2,10 @@
 
 **To run the project you must set a .env file with mysql credentials**
 
-.env
+**change env to .env including your credentials** 
 
-admin=<db_user>
-password=<db_password>
+
+
+***admin=<db_user>***
+***password=<db_password>***
+***host=localhost***

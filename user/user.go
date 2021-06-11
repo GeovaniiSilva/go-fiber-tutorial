@@ -15,15 +15,16 @@ var err error
 type User struct {
 	gorm.Model
 
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
+	FirstName string `json:"firstname"`
+	LastName  string `json:"lastname"`
 	Email     string `json:"email"`
 }
 
+var host = viperenv.ViperEnvVariable("host")
 var admin = viperenv.ViperEnvVariable("admin")
 var password = viperenv.ViperEnvVariable("password")
 
-var DNS = fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/godb", admin, password)
+var DNS = fmt.Sprintf("%s:%s@%s", admin, password, host)
 
 func InitialMigration() {
 	DB, err = gorm.Open(mysql.Open(DNS), &gorm.Config{})
@@ -72,7 +73,8 @@ func SaveUser(c *fiber.Ctx) error {
 		return c.Status(500).SendString(err.Error())
 	}
 
-	DB.Save(&user)
+	DB.Create(&user)
+	fmt.Println(user)
 	return c.JSON(&user)
 
 }
