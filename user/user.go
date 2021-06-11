@@ -2,10 +2,9 @@ package user
 
 import (
 	"fmt"
-	"log"
 
+	"github.com/GeovaniiSilva/go-fiber-tutorial/viperenv"
 	"github.com/gofiber/fiber/v2"
-	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -21,26 +20,8 @@ type User struct {
 	Email     string `json:"email"`
 }
 
-func ViperEnvVariable(key string) string {
-	viper.SetConfigFile(".env")
-
-	err := viper.ReadInConfig()
-
-	if err != nil {
-		log.Fatalf("Error while reading config file %s", err)
-	}
-
-	value, ok := viper.Get(key).(string)
-
-	if !ok {
-		log.Fatal("Invalid type")
-	}
-
-	return value
-}
-
-var admin = ViperEnvVariable("admin")
-var password = ViperEnvVariable("password")
+var admin = viperenv.ViperEnvVariable("admin")
+var password = viperenv.ViperEnvVariable("password")
 
 var DNS = fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/godb", admin, password)
 
