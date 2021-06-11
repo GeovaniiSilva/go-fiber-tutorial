@@ -1,30 +1,9 @@
 package main
 
 import (
-	"log"
-
 	"github.com/GeovaniiSilva/go-fiber-tutorial/user"
 	"github.com/gofiber/fiber/v2"
-	"github.com/spf13/viper"
 )
-
-func ViperEnvVariable(key string) string {
-	viper.SetConfigFile(".env")
-
-	err := viper.ReadInConfig()
-
-	if err != nil {
-		log.Fatalf("Error while reading config file %s", err)
-	}
-
-	value, ok := viper.Get(key).(string)
-
-	if !ok {
-		log.Fatal("Invalid type")
-	}
-
-	return value
-}
 
 func hello(c *fiber.Ctx) error {
 	return c.SendString("Welcome to hello world!")
