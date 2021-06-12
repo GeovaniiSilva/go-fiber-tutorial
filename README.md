@@ -2,10 +2,11 @@
 
 **To run the project you must set a .env file with mysql credentials**
 
-**change env to .env including your credentials** 
+**After installking and setup mysql database change env to .env including your credentials** 
 
 
+* env variables
 
-***admin=<db_user>***
-***password=<db_password>***
-***host=localhost***
+1. admin=<db_user>
+2. password=<db_password>
+3. host=localhost
