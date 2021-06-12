@@ -2,7 +2,7 @@
 
 **To run the project you must set a .env file with mysql credentials**
 
-**After installking and setup mysql database change env to .env including your credentials** 
+**After installing and setting up mysql database change env to .env including your credentials** 
 
 
 * env variables
