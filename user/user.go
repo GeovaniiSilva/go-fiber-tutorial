@@ -73,8 +73,8 @@ func SaveUser(c *fiber.Ctx) error {
 		return c.Status(500).SendString(err.Error())
 	}
 
-	if err := DB.Create(&user); err != nil {
-		return c.Status(500).SendString("User already exists")
+	if res := DB.Create(&user); res.Error != nil {
+		c.Status(500).SendString("User email already exists!")
 	}
 
 	return c.JSON(&user)
