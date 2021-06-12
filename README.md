@@ -1,7 +1,6 @@
 # go-fiber-tutorial
 
 **To run the project you must set a .env file with mysql credentials**
-
 **After installing and setting up mysql database change env to .env including your credentials** 
 
 
